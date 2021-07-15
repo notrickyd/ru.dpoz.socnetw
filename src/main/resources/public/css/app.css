@@ -1,0 +1,14 @@
+* {
+    font-family: "Segoe UI", serif;
+    margin: 5px;
+}
+
+a, a:visited {
+    text-decoration-line: none;
+    color: royalblue;
+}
+
+div.user_in_list {
+    margin: 10px;
+    border-bottom: 1px solid lightgray;
+}
