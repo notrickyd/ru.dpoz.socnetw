@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Socnetw</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/app.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/app.css}"/>
+</head>
+<body>
+    <th:block th:if="${loggedin == true}">
+        <a th:href="@{/user}" th:text="'Профиль'"/> |
+        <a th:href="@{/users}" th:text="'Поиск друзей'" style="text-decoration-line: underline"/> |
+        <a th:href="@{/signout}" th:text="'Выйти'"/>
+    </th:block>
+    <th:block th:if="${loggedin == false}">
+        <a th:href="@{/signin}" th:text="'Войти'"/> |
+        <a th:href="@{/signup}" th:text="'Регистрация'"/>
+    </th:block>
+    <hr/>
+    <div th:text="'Привет. Ты попал на страницу прототипа социальной сети высокой нагрузки socnetw.'"></div>
+    <div th:text="'Сейчас ' + ${time}"></div>
+</body>
+</html>
