@@ -64,6 +64,12 @@ public class PagesController
         return "signin/index";
     }
 
+    /*@GetMapping({"/signout"})
+    public String signout()
+    {
+        return "redirect:/";
+    }*/
+
     @GetMapping({"/user" ,"/user/{userId}"})
     public String userPage(@PathVariable(required = false) UUID userId, Model model)
     {

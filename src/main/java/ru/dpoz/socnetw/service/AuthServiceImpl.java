@@ -20,11 +20,11 @@ import java.util.UUID;
 public class AuthServiceImpl implements AuthService
 {
     @Autowired
-    User user;
+    User userDAO;
     @Autowired
-    UserHobbies userHobbies;
+    UserHobbies userHobbiesDAO;
     @Autowired
-    UserSecret secret;
+    UserSecret secretDAO;
 
     @Override
     public UserSecretDetails getCurrentUser()
@@ -40,7 +40,7 @@ public class AuthServiceImpl implements AuthService
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
     {
-        UserSecretEntity userData = this.secret.findUsername(username);
+        UserSecretEntity userData = this.secretDAO.findUsername(username);
         if (userData == null)
             throw new UsernameNotFoundException(username);
         return new UserSecretDetails(userData);
@@ -49,7 +49,7 @@ public class AuthServiceImpl implements AuthService
     @Override
     public boolean checkUsernameExists(String username)
     {
-        return  this.secret.findUsername(username) != null;
+        return  this.secretDAO.findUsername(username) != null;
     }
 
     @Override
@@ -57,10 +57,10 @@ public class AuthServiceImpl implements AuthService
     public boolean signUp(SignUpInfo signUpInfo)
     {
         //TODO проверка входящей информации, сервис верификации, try-catch и тд
-        UUID userId =  user.add(signUpInfo.getUser());
-        signUpInfo.getHobbies().forEach(id -> userHobbies.add(userId, id));
+        UUID userId =  userDAO.add(signUpInfo.getUser());
+        signUpInfo.getHobbies().forEach(id -> userHobbiesDAO.add(userId, id));
         signUpInfo.getSecret().setUserId(userId);
-        secret.add(signUpInfo.getSecret());
+        secretDAO.add(signUpInfo.getSecret());
         return true;
     }
 }

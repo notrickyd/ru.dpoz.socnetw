@@ -13,6 +13,9 @@ var axiosInstance = axios.create(axiosConfig);
 
 function signUpMethod(form)
 {
+    csrf = document.getElementById("csrf-id");
+    csrf_name = csrf.getAttribute('name');
+    csrf_value = csrf.value;
     const data = new FormData(document.forms.namedItem('signUpInfo'));
     let body = {};
     secret = {};
@@ -35,6 +38,7 @@ function signUpMethod(form)
             url: "/api/v1/auth/signup",
             headers: {
                 'Content-Type' : 'application/json',
+                csrf_name: csrf_value
             },
             data: body
         }).then( response => {
@@ -50,11 +54,15 @@ function signUpMethod(form)
 
 function addFriend(userId)
 {
+    csrf = document.getElementById("csrf-id");
+    csrf_name = csrf.getAttribute('name');
+    csrf_value = csrf.value;
     try {
         axiosInstance({
             method: 'post',
             url: "/api/v1/user/friends/add/" + userId,
             headers: {
+                csrf_name: csrf_value,
                 'Content-Type' : 'application/json'
             },
             data: {}

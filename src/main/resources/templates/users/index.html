@@ -10,10 +10,7 @@
   <title th:text="'Поиск друзей'"></title>
 </head>
 <body>
-    <a th:href="@{/user}" th:text="'Профиль'"/> |
-    <a th:href="@{/users}" th:text="'Поиск друзей'" style="text-decoration-line: underline"/> |
-    <a th:href="@{/signout}" th:text="'Выйти'"/>
-    <hr/>
+    <div th:replace="layout/header/menu-top :: menu-top"></div>
     <h2>Пользователи</h2><br>
     <div th:each="user: ${users}" th:class="'user_in_list'">
         <p th:text="${user.firstName + ' ' + user.lastName}" style="font-weight: bold;"></p>
@@ -27,5 +24,6 @@
         </p>
         <a th:href="'javascript:addFriend(\'' + ${user.userId} + '\');'">Зафрендить</a>
     </div>
+    <input type="hidden" id="csrf-id" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </body>
 </html>
