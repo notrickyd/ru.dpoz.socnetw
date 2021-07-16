@@ -9,6 +9,9 @@ a, a:visited {
     text-decoration-line: none;
     color: royalblue;
 }
+a.same-page{
+    text-decoration-line: underline;
+}
 
 div.user_in_list {
     margin: 10px;

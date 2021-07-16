@@ -7,8 +7,8 @@
 <body>
     <div th:fragment="menu-top">
         <div sec:authorize="isAuthenticated()" style="margin: 0px;">
-            <a th:href="@{/user}" th:text="'Профиль'"/> |
-            <a th:href="@{/users}" th:text="'Поиск друзей'" style="text-decoration-line: underline"/> |
+            <a th:href="@{/user}" th:text="'Профиль'" th:class="${#httpServletRequest.requestURI == '/user' ? 'same-page' : ''}"/> |
+            <a th:href="@{/users}" th:text="'Поиск друзей'" th:class="${#httpServletRequest.requestURI == '/users' ? 'same-page' : ''}"/> |
             <form th:class="signout_form" th:method="post" th:action="@{signout}"><input type="submit" value="Выйти"/></form>
             <span style="float: right; font-weight: bold" sec:authentication="name"></span>
         </div>
