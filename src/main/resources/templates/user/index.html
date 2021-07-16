@@ -10,10 +10,7 @@
     <title th:text="'Пользователь ' + ${username}"></title>
 </head>
 <body>
-    <a th:href="@{/user}" th:text="'Профиль' " style="text-decoration-line: underline"/> |
-    <a th:href="@{/users}" th:text="'Поиск друзей'"/> |
-    <a th:href="@{/signout}" th:text="'Выйти'"/>
-    <hr/>
+<div th:replace="layout/header/menu-top :: menu-top"></div>
     <th:block th:if="${username != ''}">Привет,</th:block>
     <span th:text="${user.firstName + ' ' + user.lastName + ' @ ' + username}"></span>!<br><br>
 
